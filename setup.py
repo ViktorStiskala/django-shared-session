@@ -11,10 +11,10 @@ setup(
     packages=['shared_session'],
     include_package_data=True,
     license='MPL',
-    description='A tool for cross domain Django session sharing',
+    description='Django session sharing across multiple domains running same application',
     author='Viktor Stískala',
     author_email='viktor@stiskala.cz',
-    install_requires=['django>=1.7', 'python-dateutil>=2.5'],
+    install_requires=['django>=1.7', 'python-dateutil>=2.5', 'PyNaCl>=1.0.0'],
     classifiers=[
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
