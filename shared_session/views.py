@@ -5,10 +5,10 @@ import nacl.secret
 from dateutil.parser import parse
 from django.conf import settings
 from django.http.response import HttpResponse
+from django.middleware.csrf import get_token
 from django.utils import timezone
 from django.utils.http import cookie_date, urlsafe_base64_decode
 from django.views import View
-from django.views.decorators.csrf import ensure_csrf_cookie
 from nacl.exceptions import CryptoError
 
 from . import signals
@@ -54,6 +54,9 @@ class SharedSessionView(View):
                         httponly=settings.SESSION_COOKIE_HTTPONLY or None,
                     )
 
+                    # ensure CSRF cookie is set
+                    get_token(request)
+
                     # emit signal
                     signals.session_replaced.send(sender=self.__class__, request=request, was_empty=is_session_empty, src_domain=message['src'], dst_domain=http_host)
         except (CryptoError, ValueError):
@@ -62,4 +65,4 @@ class SharedSessionView(View):
         return response
 
 
-shared_session_view = ensure_csrf_cookie(SharedSessionView.as_view())
+shared_session_view = SharedSessionView.as_view()
