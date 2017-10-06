@@ -8,7 +8,7 @@ from django.http.response import HttpResponse
 from django.middleware.csrf import get_token
 from django.utils import timezone
 from django.utils.http import cookie_date, urlsafe_base64_decode
-from django.views import View
+from django.views.generic.base import View
 from nacl.exceptions import CryptoError
 
 from . import signals
