@@ -4,7 +4,7 @@ import time
 import nacl.secret
 from dateutil.parser import parse
 from django.conf import settings
-from django.http.response import HttpResponse
+from django.http import HttpResponse
 from django.middleware.csrf import get_token
 from django.utils import timezone
 from django.utils.http import cookie_date, urlsafe_base64_decode
