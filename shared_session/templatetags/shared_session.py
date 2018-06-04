@@ -67,9 +67,17 @@ class LoaderNode(template.Node):
 
         try:
             self.ensure_session_key(request)
+            
+            port = request.META.get('SERVER_PORT', None)
+            if port == '80' and request.scheme == 'http':
+                port = ''
+            elif port == '443' and request.scheme == 'https':
+                port = ''
+            else:
+                port = ':%s' % str(port)
 
             return self.template.render(template.Context({
-                'domains': [self.build_url(domain='{}://{}'.format(request.scheme, domain), message=self.get_message(request, domain)) for domain in self.get_domains(request)]
+                'domains': [self.build_url(domain='{}://{}{}'.format(request.scheme, domain, port), message=self.get_message(request, domain)) for domain in self.get_domains(request)]
             }))
         except UpdateError:
             return ''
