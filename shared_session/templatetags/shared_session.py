@@ -49,12 +49,13 @@ class LoaderNode(template.Node):
         return box.encrypt(message, nonce)
 
     def get_message(self, request, domain):
-        return urlsafe_base64_encode(self.encrypt_payload({
+        enc_payload = self.encrypt_payload({
             'key': request.session.session_key,
             'src': request.META['HTTP_HOST'],
             'dst': domain,
             'ts': timezone.now().isoformat()
-        }))
+        })
+        return urlsafe_base64_encode(enc_payload).decode('ascii')
 
     def build_url(self, domain, message):
         return urljoin(domain, reverse('shared_session:share', kwargs={'message': message}))
