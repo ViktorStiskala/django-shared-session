@@ -1,6 +1,6 @@
 import copy
 import json
-from urllib.parse import urljoin
+from six.moves.urllib.parse import urljoin
 
 import nacl.secret
 import nacl.utils
