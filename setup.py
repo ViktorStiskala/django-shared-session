@@ -15,7 +15,13 @@ setup(
     url='https://github.com/ViktorStiskala/django-shared-session',
     author='Viktor Stískala',
     author_email='viktor@stiskala.cz',
-    install_requires=['setuptools-git', 'django>=1.7', 'python-dateutil>=2.5', 'PyNaCl>=1.0.0'],
+    install_requires=[
+        'setuptools-git',
+        'django>=1.7',
+        'python-dateutil>=2.5',
+        'PyNaCl>=1.0.0',
+        'six>=1.11'
+    ],
     classifiers=[
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
