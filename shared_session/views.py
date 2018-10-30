@@ -17,7 +17,7 @@ from . import signals
 class SharedSessionView(View):
     def __init__(self, **kwargs):
         self.encryption_key = settings.SECRET_KEY.encode('ascii')[:nacl.secret.SecretBox.KEY_SIZE]
-        super().__init__(**kwargs)
+        super(SharedSessionView, self).__init__(**kwargs)
 
     def decrypt_payload(self, message):
         box = nacl.secret.SecretBox(self.encryption_key)

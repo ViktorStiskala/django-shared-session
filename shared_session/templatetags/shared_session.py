@@ -1,6 +1,6 @@
 import copy
 import json
-from urllib.parse import urljoin
+from six.moves.urllib.parse import urljoin
 
 import nacl.secret
 import nacl.utils
@@ -24,7 +24,7 @@ class LoaderNode(template.Node):
 
     def __init__(self):
         self.encryption_key = settings.SECRET_KEY.encode('ascii')[:nacl.secret.SecretBox.KEY_SIZE]
-        super().__init__()
+        super(LoaderNode, self).__init__()
 
     def get_domains(self, request):
         host = request.META['HTTP_HOST']
