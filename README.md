@@ -3,7 +3,7 @@
 django-shared-session is a tool that enables cross site session sharing, which can be useful when running the same Django
 application on different domains (for example due to different language mutations). This library can be used for sharing login information as well as session data for both authenticated and anonymous users. If all you need is to share login information, please  consider using some of single sign-on (SSO) solutions which could be better for this specific use case. 
 
-This tool is only useful when you are running your application on different domains, not just subdomains. Subdomains can be handled with cookies path set to `.domain.tld` (start's with dot).
+This tool is only useful when you are running your application on different domains, not just subdomains. Subdomains can be handled with cookies path set to `.domain.tld` (starts with dot).
 
 This project is inspired by [django-xsession](https://github.com/badzong/django-xsession), but uses a different approach to session sharing which sets the cookie on server-side and thus does not require reloading the page.
 
