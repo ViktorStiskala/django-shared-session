@@ -7,7 +7,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.middleware.csrf import get_token
 from django.utils import timezone
-from django.utils.http import cookie_date, urlsafe_base64_decode
+from django.utils.http import http_date, urlsafe_base64_decode
 from django.views.generic.base import View
 from nacl.exceptions import CryptoError
 
@@ -43,7 +43,7 @@ class SharedSessionView(View):
                     else:
                         max_age = request.session.get_expiry_age()
                         expires_time = time.time() + max_age
-                        expires = cookie_date(expires_time)
+                        expires = http_date(expires_time)
 
                     response.set_cookie(
                         settings.SESSION_COOKIE_NAME,

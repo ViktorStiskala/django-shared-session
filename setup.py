@@ -7,7 +7,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-shared-session',
-    version='0.4.1',
+    version='0.5.1',
     packages=['shared_session', 'shared_session.templatetags'],
     include_package_data=True,
     license='MPL',
@@ -17,7 +17,7 @@ setup(
     author_email='viktor@stiskala.cz',
     install_requires=[
         'setuptools-git',
-        'django>=1.7',
+        'django>=1.8',
         'python-dateutil>=2.5',
         'PyNaCl>=1.0.0',
         'six>=1.11'
