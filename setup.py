@@ -7,7 +7,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-shared-session',
-    version='0.5.1',
+    version='0.5.2',
     packages=['shared_session', 'shared_session.templatetags'],
     include_package_data=True,
     license='MPL',

@@ -55,7 +55,12 @@ class LoaderNode(template.Node):
             'dst': domain,
             'ts': timezone.now().isoformat()
         })
-        return urlsafe_base64_encode(enc_payload).decode('ascii')
+        data = urlsafe_base64_encode(enc_payload)
+        try:
+            return data.decode('ascii')  # Django versions prior to 2.2 don't return `str` automatically
+        except AttributeError:
+            return data
+
 
     def build_url(self, domain, message):
         return urljoin(domain, reverse('shared_session:share', kwargs={'message': message}))
