@@ -22,7 +22,7 @@ setup(
     author_email='viktor@stiskala.cz',
     install_requires=[
         'setuptools-git',
-        'django>=1.8',
+        'django>=2.0',
         'python-dateutil>=2.5',
         'PyNaCl>=1.0.0',
         'six>=1.11'
