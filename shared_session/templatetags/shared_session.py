@@ -9,6 +9,7 @@ from django.conf import settings
 from django.contrib.sessions.backends.base import UpdateError
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_encode
 
 register = template.Library()
@@ -55,12 +56,7 @@ class LoaderNode(template.Node):
             'dst': domain,
             'ts': timezone.now().isoformat()
         })
-        data = urlsafe_base64_encode(enc_payload)
-        try:
-            return data.decode('ascii')  # Django versions prior to 2.2 don't return `str` automatically
-        except AttributeError:
-            return data
-
+        return force_text(urlsafe_base64_encode(enc_payload), encoding='ascii')
 
     def build_url(self, domain, message):
         return urljoin(domain, reverse('shared_session:share', kwargs={'message': message}))
